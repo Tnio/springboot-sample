@@ -1,0 +1,21 @@
+server:
+  port: 9100
+
+spring:
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    application:
+        name: redis-cluster-sample
+
+    redis:
+      cluster:
+        nodes:
+          - 10.160.10.51:7000
+          - 10.160.10.51:7001
+          - 10.160.10.51:7002
+          - 10.160.10.51:7003
+          - 10.160.10.51:7004
+          - 10.160.10.51:7005
+        commandTimeout: 5
+        expireSeconds: 20

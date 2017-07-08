@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>springboot-rabbitmq-sample</module>
+        <module>springboot-redis-cluster-sample</module>
     </modules>
     <packaging>pom</packaging>
 
