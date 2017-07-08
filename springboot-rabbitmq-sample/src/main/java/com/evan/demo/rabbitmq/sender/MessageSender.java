@@ -8,8 +8,6 @@ import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 /**
  * Created by Evan on 2017-07-07.
  */
@@ -21,16 +19,18 @@ public class MessageSender implements RabbitTemplate.ConfirmCallback {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    public MessageSender(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-        this.rabbitTemplate.setConfirmCallback(this);
-    }
-
-    public void send(String msg) {
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        logger.info("====> send: " + correlationData.getId());
-        this.rabbitTemplate.convertAndSend(AmqpConfig.FOO_EXCHANGE, AmqpConfig.FOO_ROUTINGKEY, msg, correlationData);
+    /**
+     *
+     * @param str
+     * @param routingKey
+     */
+    public void senMessage(String str, String routingKey) {
+        try {
+            logger.info("====> send message: " + str);
+            rabbitTemplate.convertAndSend(AmqpConfig.O2O_EXCHANGE, routingKey, str);
+        } catch (Exception ex) {
+            logger.error("====> MessageSender.senMessage: " + ex.getMessage(), ex);
+        }
     }
 
     /**
