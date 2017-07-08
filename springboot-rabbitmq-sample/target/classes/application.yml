@@ -1,0 +1,15 @@
+server:
+  port: 9000
+
+spring:
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    application:
+        name: rabbitmq-sample
+
+rabbitMQ:
+    host: 10.160.10.90
+    username: evan
+    password: evan
+    vhost: app-host-sample
