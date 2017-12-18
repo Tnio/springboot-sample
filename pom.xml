@@ -10,6 +10,8 @@
     <modules>
         <module>springboot-rabbitmq-sample</module>
         <module>springboot-redis-cluster-sample</module>
+        <module>springboot-kafka-sample</module>
+        <module>springboot-zookeeper-sample</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,0 +1,8 @@
+server:
+  port: 9000
+spring:
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    application:
+        name: zookeeper-sample
