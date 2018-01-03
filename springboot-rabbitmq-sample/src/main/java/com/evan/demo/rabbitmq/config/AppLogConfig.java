@@ -18,7 +18,7 @@ public class AppLogConfig extends BaseConfig {
 
     @Bean
     public Queue logeQueue() {
-        return new Queue(O2O_LOG_QUEUE, false);
+        return new Queue(O2O_LOG_QUEUE, true);
     }
 
     @Bean(name = "logBinding")

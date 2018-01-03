@@ -20,13 +20,11 @@ public class MessageSender implements RabbitTemplate.ConfirmCallback {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     *
      * @param str
      * @param routingKey
      */
     public void senMessage(String str, String routingKey) {
         try {
-            logger.info("====> send message: " + str);
             rabbitTemplate.convertAndSend(AmqpConfig.O2O_EXCHANGE, routingKey, str);
         } catch (Exception ex) {
             logger.error("====> MessageSender.senMessage: " + ex.getMessage(), ex);

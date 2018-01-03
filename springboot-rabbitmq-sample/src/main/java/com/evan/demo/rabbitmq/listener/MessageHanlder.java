@@ -1,7 +1,6 @@
 package com.evan.demo.rabbitmq.listener;
 
 import com.evan.demo.rabbitmq.config.AppLogConfig;
-import com.evan.demo.rabbitmq.config.AppOrderConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,33 +17,20 @@ public class MessageHanlder {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private static int number = 100;
+
     @RabbitListener(queues = AppLogConfig.O2O_LOG_QUEUE)
     @RabbitHandler
     public void processLogMessage(Object message) {
         try {
-            if (message instanceof Message) {
-                String messageBody = new String(((Message) message).getBody(), "utf-8");
-                ObjectMapper objectMapper = new ObjectMapper();
-                logger.info("====> receive log message: " + objectMapper.writeValueAsString(messageBody));
+            if (number <= 0) {
+                logger.info("====== game over ======");
+                return;
             }
+            logger.info("====> receive message, number=" + number);
+            number--;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-    @RabbitListener(queues = AppOrderConfig.O2O_ORDER_QUEUE)
-    @RabbitHandler
-    public void processOrderMessage(Object message) {
-        try {
-            if (message instanceof Message) {
-                String messageBody = new String(((Message) message).getBody(), "utf-8");
-                ObjectMapper objectMapper = new ObjectMapper();
-                logger.info("====> receive order message: " + objectMapper.writeValueAsString(messageBody));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

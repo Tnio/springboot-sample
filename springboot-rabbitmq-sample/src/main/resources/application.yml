@@ -9,7 +9,8 @@ spring:
         name: rabbitmq-sample
 
 rabbitMQ:
-    host: 10.160.10.90
-    username: evan
-    password: evan
-    vhost: app-host-sample
+    host: 10.160.10.60
+    port: 5672
+    username: o2o-user
+    password: o2o-password
+    vhost: o2o-app-host
